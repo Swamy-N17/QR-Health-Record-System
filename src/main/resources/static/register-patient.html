@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register Patient | QR Health</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="/admin-dashboard.html" class="brand">
+        <div class="brand-logo">+</div>
+
+        <div>
+            <strong>QR Health</strong>
+            <small>Health Record System</small>
+        </div>
+    </a>
+
+    <div class="topbar-right">
+        <span class="role-badge">Admin</span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+</header>
+
+
+<main class="dashboard">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">ADMINISTRATION</span>
+            <h1>Register Patient</h1>
+            <p>Add a new patient to the healthcare system.</p>
+        </div>
+
+        <a href="/admin-dashboard.html" class="back-link">
+            ← Dashboard
+        </a>
+    </div>
+
+
+    <section class="form-card">
+
+        <div class="form-header">
+
+            <div class="form-icon">+</div>
+
+            <div>
+                <h2>Patient Information</h2>
+                <p>Enter the patient's details below.</p>
+            </div>
+
+        </div>
+
+
+        <div class="error-box" id="patientError"></div>
+        <div class="success-box" id="patientSuccess"></div>
+
+
+        <form id="registerPatientForm" novalidate>
+
+            <div class="form-section-title">
+                Personal Information
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="patientFullName">
+                        Full Name <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="patientFullName"
+                        placeholder="e.g. Anita Sharma"
+                        required
+                    >
+
+                    <div
+                        class="field-error"
+                        id="err-patientFullName"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="patientEmail">
+                        Email <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="patientEmail"
+                        placeholder="patient@example.com"
+                        required
+                    >
+
+                    <div
+                        class="field-error"
+                        id="err-patientEmail"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="patientPhone">
+                        Phone Number <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="patientPhone"
+                        placeholder="10-digit number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+
+                    <div
+                        class="field-error"
+                        id="err-patientPhone"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="patientAge">
+                        Age <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="patientAge"
+                        placeholder="e.g. 42"
+                        min="0"
+                        max="130"
+                        required
+                    >
+
+                    <div
+                        class="field-error"
+                        id="err-patientAge"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="patientGender">
+                        Gender <span class="required-mark">*</span>
+                    </label>
+
+                    <select id="patientGender" required>
+
+                        <option value="" disabled selected>
+                            Select gender
+                        </option>
+
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                    <div
+                        class="field-error"
+                        id="err-patientGender"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="patientDob">
+                        Date of Birth
+                        <span class="field-optional-mark">(optional)</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="patientDob"
+                    >
+
+                    <div
+                        class="field-error"
+                        id="err-patientDob"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="patientBloodGroup">
+                        Blood Group
+                        <span class="field-optional-mark">(optional)</span>
+                    </label>
+
+                    <select id="patientBloodGroup">
+
+                        <option value="" selected>
+                            Not known / not provided
+                        </option>
+
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+
+                    </select>
+
+                    <div
+                        class="field-error"
+                        id="err-patientBloodGroup"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-section-title">
+                Contact & Account
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="patientPassword">
+                        Password <span class="required-mark">*</span>
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="patientPassword"
+                            placeholder="At least 6 characters"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle-btn"
+                            id="togglePatientPassword"
+                            aria-label="Show password"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="field-error"
+                        id="err-patientPassword"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="patientEmergencyContact">
+                        Emergency Contact
+                        <span class="field-optional-mark">(optional)</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="patientEmergencyContact"
+                        placeholder="10-digit number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                    >
+
+                    <div class="field-hint">
+                        Family member or friend to contact in an emergency.
+                    </div>
+
+                    <div
+                        class="field-error"
+                        id="err-patientEmergencyContact"
+                    ></div>
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label for="patientAddress">
+                        Address <span class="required-mark">*</span>
+                    </label>
+
+                    <textarea
+                        id="patientAddress"
+                        placeholder="Street, City, State, PIN"
+                        required
+                    ></textarea>
+
+                    <div
+                        class="field-error"
+                        id="err-patientAddress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <a
+                    href="/admin-dashboard.html"
+                    class="btn-secondary"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="submitBtn"
+                >
+                    Register Patient
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+    <!-- Generated Health Card -->
+    <section class="health-card-result" id="healthCardResult" style="display:none;">
+        <div class="health-card-result-header">
+            <div>
+                <span class="panel-label">REGISTRATION COMPLETE</span>
+                <h2>Patient Health Card</h2>
+                <p>The Health Card has been generated successfully.</p>
+            </div>
+        </div>
+
+        <div class="health-card-preview">
+            <img id="registeredHealthCard" src="" alt="Generated Patient Health Card">
+        </div>
+
+        <div class="health-card-result-actions">
+            <a href="/admin-dashboard.html" class="btn-secondary">Back to Dashboard</a>
+            <button type="button" class="btn-primary" id="registerAnotherBtn">Register Another Patient</button>
+        </div>
+    </section>
+
+</main>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/register-patient.js"></script>
+
+</body>
+</html>

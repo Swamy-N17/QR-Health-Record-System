@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | QR Health</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="/admin-dashboard.html" class="brand">
+        <div class="brand-logo">+</div>
+
+        <div>
+            <strong>QR Health</strong>
+            <small>Health Record System</small>
+        </div>
+    </a>
+
+    <div class="topbar-right">
+        <span class="role-badge">Admin</span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+</header>
+
+
+<main class="dashboard">
+
+    <!-- Heading -->
+
+    <div class="page-heading">
+
+        <div>
+            <span class="eyebrow">ADMINISTRATION</span>
+
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Manage your clinic and keep track of doctors and patients.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- Welcome -->
+
+    <section class="welcome-card">
+
+        <div>
+            <span class="panel-label">OVERVIEW</span>
+
+            <h2>Welcome back</h2>
+
+            <p>
+                Here's what's happening in your clinic.
+            </p>
+        </div>
+
+        <div class="welcome-icon">+</div>
+
+    </section>
+
+
+    <!-- Statistics -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon doctor-icon">
+                +
+            </div>
+
+            <div>
+                <span class="stat-label">
+                    Total Doctors
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="totalDoctors"
+                >
+                    --
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon patient-icon">
+                +
+            </div>
+
+            <div>
+                <span class="stat-label">
+                    Total Patients
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="totalPatients"
+                >
+                    --
+                </strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Quick Actions -->
+
+    <section class="panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <span class="panel-label">QUICK ACTIONS</span>
+
+                <h2>Clinic Management</h2>
+            </div>
+
+        </div>
+
+
+        <div class="admin-actions">
+
+            <a
+                href="/register-doctor.html"
+                class="admin-action"
+            >
+                <span class="action-icon">+</span>
+
+                <span>
+                    <strong>Register Doctor</strong>
+                    <small>Add a new doctor</small>
+                </span>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                href="/register-patient.html"
+                class="admin-action"
+            >
+                <span class="action-icon">+</span>
+
+                <span>
+                    <strong>Register Patient</strong>
+                    <small>Add a new patient</small>
+                </span>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                href="/manage-doctors.html"
+                class="admin-action"
+            >
+                <span class="action-icon">≡</span>
+
+                <span>
+                    <strong>Manage Doctors</strong>
+                    <small>View and manage doctors</small>
+                </span>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                href="/manage-patients.html"
+                class="admin-action"
+            >
+                <span class="action-icon">≡</span>
+
+                <span>
+                    <strong>Manage Patients</strong>
+                    <small>View and manage patients</small>
+                </span>
+
+                <b>→</b>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Recent Activity -->
+
+    <div class="admin-recent-grid">
+
+        <!-- Recent Doctors -->
+
+        <section class="panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <span class="panel-label">RECENT</span>
+                    <h2>Doctors</h2>
+                </div>
+
+                <a
+                    href="/manage-doctors.html"
+                    class="view-link"
+                >
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="recent-doctors-table">
+
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="recentDoctorsBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Recent Patients -->
+
+        <section class="panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <span class="panel-label">RECENT</span>
+                    <h2>Patients</h2>
+                </div>
+
+                <a
+                    href="/manage-patients.html"
+                    class="view-link"
+                >
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="recent-patients-table">
+
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="recentPatientsBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/admin-dashboard.js"></script>
+
+</body>
+</html>

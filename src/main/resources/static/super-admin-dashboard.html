@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Super Admin | QR Health</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        <div class="brand-logo">+</div>
+        <div>
+            <strong>QR Health</strong>
+            <small>Health Record System</small>
+        </div>
+    </div>
+
+    <div class="topbar-right">
+        <span class="role-badge">Super Admin</span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+</header>
+
+
+<main class="dashboard">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">ADMINISTRATION</span>
+            <h1>Super Admin Dashboard</h1>
+            <p>Manage administrators and monitor your healthcare system.</p>
+        </div>
+    </div>
+
+
+    <!-- Statistics -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon admin-icon">A</div>
+            <div>
+                <span class="stat-label">Total Admins</span>
+                <strong class="stat-value" id="totalAdmins">--</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon doctor-icon">D</div>
+            <div>
+                <span class="stat-label">Total Doctors</span>
+                <strong class="stat-value" id="totalDoctors">--</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon patient-icon">P</div>
+            <div>
+                <span class="stat-label">Total Patients</span>
+                <strong class="stat-value" id="totalPatients">--</strong>
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="dashboard-grid">
+
+        <!-- Create Admin -->
+
+        <section class="panel create-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="panel-label">NEW ACCOUNT</span>
+                    <h2>Create Admin</h2>
+                </div>
+
+                <div class="panel-icon">+</div>
+            </div>
+
+            <div class="error-box" id="createAdminError"></div>
+
+            <div class="success-box" id="createAdminSuccess"></div>
+
+
+            <form id="createAdminForm">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="admin@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">Password</label>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="passwordToggle"
+                            class="password-toggle"
+                            aria-label="Show password"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="primary-btn" id="createAdminBtn">
+                    <span class="btn-text">Create Admin</span>
+                    <span class="spinner"></span>
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Admin List -->
+
+        <section class="panel admin-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="panel-label">ADMINISTRATORS</span>
+                    <h2>All Admins</h2>
+                </div>
+
+                <span class="count-badge" id="adminCount">0</span>
+            </div>
+
+
+            <div class="admin-list" id="adminsTableBody">
+                <!-- Filled by JS -->
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/super-admin-dashboard.js"></script>
+
+</body>
+</html>

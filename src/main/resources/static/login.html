@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | QR Health</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+<main class="auth-page">
+    <div class="float-shape shape-one"></div>
+    <div class="float-shape shape-two"></div>
+    <div class="float-shape shape-three"></div>
+
+    <section class="login-card">
+        <div class="brand">
+            <div class="brand-logo"><span>+</span></div>
+            <div><strong>QR Health</strong><small>Health Record System</small></div>
+        </div>
+
+        <div class="health-visual">
+            <div class="scan-ring"></div>
+            <svg class="ecg-svg" viewBox="0 0 120 70">
+                <polyline points="5,35 30,35 38,35 43,20 48,50 55,10 63,35 75,35 81,28 87,42 92,35 115,35" />
+            </svg>
+            <div class="health-cross">+</div>
+        </div>
+
+        <div class="login-heading">
+            <span class="welcome-label">SECURE ACCESS</span>
+            <h1>Welcome back</h1>
+            <p>Sign in to access your healthcare records.</p>
+        </div>
+
+        <div class="error-box" id="errorBox"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="role">Login as</label>
+                <div class="role-select" id="roleSelect">
+                    <button type="button" class="role-select-button" id="roleSelectButton"
+                            aria-haspopup="listbox" aria-expanded="false">
+                        <span class="role-selected-icon" id="roleSelectedIcon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0"/>
+                            </svg>
+                        </span>
+                        <span class="role-selected-text" id="roleSelectedText">Select your role</span>
+                        <svg class="role-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+
+                    <div class="role-options" id="roleOptions" role="listbox" aria-label="Select your role">
+                        <button type="button" class="role-option" data-value="ROLE_PATIENT" role="option">
+                            <span class="role-option-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0"/></svg>
+                            </span>
+                            <span>Patient</span>
+                        </button>
+                        <button type="button" class="role-option" data-value="ROLE_DOCTOR" role="option">
+                            <span class="role-option-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v4h4v6a7 7 0 0 1-14 0V8h4V4Zm3 8v6m-3-3h6"/></svg>
+                            </span>
+                            <span>Doctor</span>
+                        </button>
+                        <button type="button" class="role-option" data-value="ROLE_ADMIN" role="option">
+                            <span class="role-option-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-9l8-6 8 6v9M8 21v-5h8v5M10 10h4"/></svg>
+                            </span>
+                            <span>Admin</span>
+                        </button>
+                        <button type="button" class="role-option" data-value="ROLE_SUPER_ADMIN" role="option">
+                            <span class="role-option-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Zm3 0V6a4 4 0 0 1 8 0v2M9 13h6"/></svg>
+                            </span>
+                            <span>Super Admin</span>
+                        </button>
+                    </div>
+
+                    <select id="role" class="native-role-select" aria-hidden="true" tabindex="-1" required>
+                        <option value="" selected disabled>Select your role</option>
+                        <option value="ROLE_PATIENT">Patient</option>
+                        <option value="ROLE_DOCTOR">Doctor</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                        <option value="ROLE_SUPER_ADMIN">Super Admin</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <div class="input-box">
+                    <span class="input-icon">✉</span>
+                    <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-box">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required>
+                    <button type="button" id="passwordToggle" class="password-toggle" aria-label="Show password">
+                        <svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle cx="12" cy="12" r="2.5"/>
+                        </svg>
+                        <svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m3 3 18 18M10.6 5.2A10.7 10.7 0 0 1 12 5c6 0 9.5 7 9.5 7a17.2 17.2 0 0 1-3.2 3.9M6.2 6.3C3.8 8.1 2.5 12 2.5 12s3.5 7 9.5 7c1.4 0 2.6-.3 3.7-.8"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-options"><span></span><a href="/forgot-password.html">Forgot password?</a></div>
+
+            <button type="submit" id="loginButton" class="login-button">
+                <span class="button-text">Sign in</span><span class="spinner"></span><span class="button-arrow">→</span>
+            </button>
+        </form>
+
+        <div class="security-note"><span>✓</span> Secure healthcare access</div>
+    </section>
+
+    <footer>QR Health Record System · Secure & Connected Care</footer>
+</main>
+<script src="/js/api.js"></script>
+<script src="/js/login.js"></script>
+</body>
+</html>

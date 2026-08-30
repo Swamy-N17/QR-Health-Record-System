@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Patients | QR Health</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/manage.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="/admin-dashboard.html" class="brand">
+        <div class="brand-logo">+</div>
+
+        <div>
+            <strong>QR Health</strong>
+            <small>Health Record System</small>
+        </div>
+    </a>
+
+    <div class="topbar-right">
+        <span class="role-badge">Admin</span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+</header>
+
+
+<main class="dashboard">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">ADMINISTRATION</span>
+            <h1>Manage Patients</h1>
+            <p>View, edit and manage registered patients.</p>
+        </div>
+    </div>
+
+
+    <section class="panel manage-panel">
+
+        <div class="manage-toolbar">
+
+            <div>
+                <span class="panel-label">REGISTERED PATIENTS</span>
+                <h2>Patients</h2>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search patients..."
+                >
+
+                <button id="searchBtn" class="search-btn">
+                    Search
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient Code</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Blood Group</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="patientsBody"></tbody>
+            </table>
+
+        </div>
+
+
+        <div class="pagination" id="pagination"></div>
+
+    </section>
+
+</main>
+
+
+<!-- Edit Patient Modal -->
+
+<div class="modal" id="editModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="panel-label">PATIENT DETAILS</span>
+                <h2>Edit Patient</h2>
+            </div>
+
+            <button
+                type="button"
+                id="closeModalBtn"
+                class="modal-close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="error-box" id="editError"></div>
+
+
+        <form id="editPatientForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="editFullName">Full Name</label>
+                    <input type="text" id="editFullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPhone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="editPhone"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="editDob">Date of Birth</label>
+                    <input type="date" id="editDob" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editBloodGroup">Blood Group</label>
+
+                    <select id="editBloodGroup" required>
+                        <option value="">Select blood group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="editEmergencyContact">
+                        Emergency Contact
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="editEmergencyContact"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="editAddress">Address</label>
+                    <textarea id="editAddress" required></textarea>
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelModalBtn"
+                >
+                    Cancel
+                </button>
+
+                <button type="submit" class="btn-primary">
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/manage-patients.js"></script>
+
+</body>
+</html>

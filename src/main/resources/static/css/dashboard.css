@@ -1,0 +1,2207 @@
+/* =========================================================
+   QR HEALTH - DASHBOARD STYLES
+   ---------------------------------------------------------
+   Shared by:
+   1. Super Admin Dashboard
+   2. Admin Dashboard
+   3. Doctor Dashboard
+   4. Patient Dashboard
+   ========================================================= */
+
+
+/* =========================================================
+   1. SHARED - TOP BAR
+   Used by all dashboards
+   ========================================================= */
+
+.topbar {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    border-bottom: 1px solid #e6eeee;
+    background: rgba(255, 255, 255, 0.94);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-logo {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: #0d9488;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.brand strong {
+    display: block;
+    color: #183b45;
+    font-size: 15px;
+}
+
+.brand small {
+    display: block;
+    margin-top: 2px;
+    color: #8aa0a6;
+    font-size: 9px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.role-badge {
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #eaf8f6;
+    color: #087f76;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.logout-btn {
+    padding: 8px 13px;
+    border: 1px solid #dce7e8;
+    border-radius: 8px;
+    background: white;
+    color: #536c73;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    border-color: #0d9488;
+    color: #0d9488;
+}
+
+
+/* =========================================================
+   2. SHARED - PAGE LAYOUT
+   Used by all dashboards
+   ========================================================= */
+
+.dashboard {
+    max-width: 1150px;
+    margin: auto;
+    padding: 42px 24px 60px;
+}
+
+.page-heading {
+    margin-bottom: 28px;
+}
+
+.eyebrow,
+.panel-label {
+    color: #0d9488;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.page-heading h1 {
+    margin: 7px 0 5px;
+    color: #183b45;
+    font-size: 30px;
+    letter-spacing: -0.8px;
+}
+
+.page-heading p {
+    margin: 0;
+    color: #7b9298;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   3. SHARED - STAT CARDS
+   Used mainly by Super Admin, Admin and Doctor
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px;
+    border: 1px solid #e4eeee;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(30, 80, 90, 0.05);
+    transition: 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(30, 80, 90, 0.08);
+}
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.admin-icon {
+    background: #eaf8f6;
+    color: #087f76;
+}
+
+.doctor-icon {
+    background: #eef5ff;
+    color: #3b73b9;
+}
+
+.patient-icon {
+    background: #f3efff;
+    color: #7654b8;
+}
+
+.stat-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #82979d;
+    font-size: 10px;
+}
+
+.stat-value {
+    color: #183b45;
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   4. SHARED - PANELS / CARDS
+   Used by all dashboards
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 22px;
+}
+
+.panel {
+    padding: 24px;
+    border: 1px solid #e4eeee;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(30, 80, 90, 0.05);
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.panel-heading h2 {
+    margin: 5px 0 0;
+    color: #183b45;
+    font-size: 18px;
+}
+
+.panel-heading p {
+    margin: 5px 0 0;
+    color: #8a9da2;
+    font-size: 10px;
+}
+
+.panel-icon {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: #eaf8f6;
+    color: #0d9488;
+    font-size: 20px;
+}
+
+.count-badge {
+    min-width: 28px;
+    padding: 5px 8px;
+    border-radius: 15px;
+    background: #f1f6f7;
+    color: #6d858b;
+    font-size: 10px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   5. SHARED - FORMS
+   Used by registration/edit/search forms
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #526b72;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 12px;
+    border: 1px solid #d9e5e6;
+    border-radius: 9px;
+    outline: none;
+    background: #f9fcfc;
+    color: #183b45;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.form-group input,
+.form-group select {
+    height: 43px;
+}
+
+.form-group textarea {
+    min-height: 90px;
+    padding-top: 12px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #0d9488;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.07);
+}
+
+
+/* =========================================================
+   6. SHARED - PASSWORD
+   ========================================================= */
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 42px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #8aa1a7;
+    cursor: pointer;
+}
+
+.password-toggle:hover {
+    background: #eaf8f6;
+    color: #0d9488;
+}
+
+
+/* =========================================================
+   7. SHARED - BUTTONS
+   ========================================================= */
+
+.primary-btn {
+    width: 100%;
+    height: 43px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 9px;
+    background: #0d9488;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: #087f76;
+    transform: translateY(-1px);
+}
+
+.primary-btn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.spinner {
+    display: none;
+    width: 14px;
+    height: 14px;
+    margin: auto;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+.primary-btn.loading .btn-text {
+    display: none;
+}
+
+.primary-btn.loading .spinner {
+    display: block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   8. SHARED - ERROR / SUCCESS MESSAGES
+   ========================================================= */
+
+.error-box,
+.success-box {
+    display: none;
+    margin-bottom: 15px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+}
+
+.error-box {
+    border: 1px solid #fecaca;
+    background: #fff5f5;
+    color: #b42318;
+}
+
+.success-box {
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #15803d;
+}
+
+
+/* =========================================================
+   9. SUPER ADMIN DASHBOARD
+   ========================================================= */
+
+/* Admin list */
+
+.admin-list {
+    display: grid;
+    gap: 9px;
+    max-height: 410px;
+    overflow-y: auto;
+    padding-right: 3px;
+}
+
+.admin-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #edf2f3;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.admin-item:hover {
+    border-color: #cbe3e0;
+    background: #fbfefe;
+}
+
+.admin-avatar {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: #eaf8f6;
+    color: #087f76;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.admin-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.admin-info strong {
+    display: block;
+    overflow: hidden;
+    color: #294c55;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-info span {
+    display: block;
+    overflow: hidden;
+    margin-top: 3px;
+    color: #8aa0a6;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-id {
+    color: #9badb1;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   10. ADMIN DASHBOARD
+   ========================================================= */
+
+/* Welcome section */
+
+.welcome-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    border: 1px solid #dceeed;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f3fbfa, #f8fcfc);
+}
+
+.welcome-card h2 {
+    margin: 5px 0 4px;
+    color: #183b45;
+    font-size: 18px;
+}
+
+.welcome-card p {
+    margin: 0;
+    color: #81969c;
+    font-size: 11px;
+}
+
+.welcome-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: #dff4f1;
+    color: #0d9488;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+/* Quick action buttons */
+
+.admin-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.admin-action {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 13px;
+    border: 1px solid #e3eded;
+    border-radius: 10px;
+    color: #183b45;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.admin-action:hover {
+    border-color: #b9dcd8;
+    background: #f8fcfc;
+    transform: translateY(-1px);
+}
+
+.action-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: #eaf8f6;
+    color: #0d9488;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.admin-action span:nth-child(2) {
+    flex: 1;
+}
+
+.admin-action strong {
+    display: block;
+    font-size: 11px;
+}
+
+.admin-action small {
+    display: block;
+    margin-top: 3px;
+    color: #8aa0a6;
+    font-size: 9px;
+}
+
+.admin-action b {
+    color: #9aabad;
+    font-size: 15px;
+}
+
+
+/* Recent Doctors / Recent Patients */
+
+.admin-recent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+
+/* Links such as "View all" */
+
+.view-link {
+    color: #0d8178;
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.view-link:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------- ADMIN RECENT TABLES ---------- */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-recent-grid table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.admin-recent-grid th,
+.admin-recent-grid td {
+    padding: 11px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.admin-recent-grid th {
+    color: #71878d;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.admin-recent-grid td {
+    color: #294c55;
+    font-size: 11px;
+    border-top: 1px solid #edf2f3;
+    vertical-align: middle;
+}
+
+/* Keep code and phone on one line */
+.recent-doctors-table td:first-child,
+.recent-patients-table td:first-child,
+.recent-patients-table td:nth-child(3) {
+    white-space: nowrap;
+}
+
+/* Allow names to wrap to a second line */
+.recent-doctors-table td:nth-child(2),
+.recent-patients-table td:nth-child(2) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
+}
+
+
+/* Recent Doctors */
+
+.recent-doctors-table th:nth-child(1),
+.recent-doctors-table td:nth-child(1) {
+    width: 25%;
+}
+
+.recent-doctors-table th:nth-child(2),
+.recent-doctors-table td:nth-child(2) {
+    width: 30%;
+}
+
+.recent-doctors-table th:nth-child(3),
+.recent-doctors-table td:nth-child(3) {
+    width: 45%;
+}
+
+
+/* Recent Patients */
+
+.recent-patients-table th:nth-child(1),
+.recent-patients-table td:nth-child(1) {
+    width: 25%;
+}
+
+.recent-patients-table th:nth-child(2),
+.recent-patients-table td:nth-child(2) {
+    width: 35%;
+}
+
+.recent-patients-table th:nth-child(3),
+.recent-patients-table td:nth-child(3) {
+    width: 40%;
+}
+
+/* =========================================================
+   11. DOCTOR DASHBOARD
+   ========================================================= */
+
+.patient-search-panel {
+    margin-top: 22px;
+}
+
+.search-intro {
+    margin: -8px 0 20px;
+    color: #81969c;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.doctor-search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: end;
+    gap: 10px;
+}
+
+.doctor-search .form-group {
+    margin: 0;
+    min-width: 0;
+}
+
+/* Search button */
+
+.search-patient-btn {
+    width: auto;
+    min-width: 135px;
+    height: 43px;
+    padding: 0 18px;
+    border-radius: 9px;
+}
+
+/* Scan button */
+
+.scan-btn {
+    width: auto;
+    min-width: 125px;
+    height: 43px;
+    padding: 0 18px;
+
+    border: 1px solid #cbe3e0;
+    border-radius: 9px;
+
+    background: #eaf8f6;
+    color: #087f76;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.scan-btn:hover {
+    background: #dff4f1;
+    border-color: #a9d7d2;
+}
+
+.scan-btn.scanning {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #b42318;
+}
+
+
+/* ---------------------------------------------------------
+   QR SCANNER
+   --------------------------------------------------------- */
+
+/*
+   Hidden until the user clicks "Scan QR Code".
+*/
+
+.qr-scanner-box {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+
+    border: 1px solid #dcebea;
+    border-radius: 14px;
+
+    background: #f8fcfc;
+}
+
+.qr-scanner-box.active {
+    display: block;
+}
+
+
+/* Scanner heading */
+
+.scanner-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.scanner-header strong {
+    display: block;
+    color: #234952;
+    font-size: 13px;
+}
+
+.scanner-header span:not(.scanner-status) {
+    display: block;
+    margin-top: 4px;
+    color: #8aa0a6;
+    font-size: 10px;
+}
+
+
+/* Camera active badge */
+
+.scanner-status {
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #eaf8f6;
+    color: #087f76 !important;
+
+    font-size: 9px !important;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* Actual scanner area */
+
+.scanner-frame {
+    position: relative;
+
+    width: min(360px, 100%);
+    min-height: 280px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #102d32;
+}
+
+
+/*
+   html5-qrcode creates its camera/video
+   inside #qrReader.
+*/
+
+#qrReader {
+    width: 100%;
+    min-height: 280px;
+    margin: 0;
+
+    overflow: hidden;
+}
+
+
+/* Camera video */
+
+#qrReader video {
+    display: block;
+
+    width: 100% !important;
+    height: 280px !important;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+}
+
+
+/*
+   html5-qrcode sometimes creates a canvas.
+*/
+
+#qrReader canvas {
+    max-width: 100%;
+}
+
+
+/* QR scanning frame */
+
+.scan-corners {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 190px;
+    height: 190px;
+
+    transform: translate(-50%, -50%);
+
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+
+    pointer-events: none;
+}
+
+
+/* Green corner brackets */
+
+.scan-corners::before,
+.scan-corners::after {
+    content: "";
+
+    position: absolute;
+
+    width: 28px;
+    height: 28px;
+
+    border-color: #0d9488;
+    border-style: solid;
+}
+
+
+/* Top-left */
+
+.scan-corners::before {
+    top: -2px;
+    left: -2px;
+
+    border-width: 4px 0 0 4px;
+}
+
+
+/* Bottom-right */
+
+.scan-corners::after {
+    right: -2px;
+    bottom: -2px;
+
+    border-width: 0 4px 4px 0;
+}
+
+
+/* ---------------------------------------------------------
+   PATIENT DETAILS
+   --------------------------------------------------------- */
+
+.patient-details-panel {
+    margin-top: 22px;
+
+    animation: panelIn 0.3s ease;
+}
+
+@keyframes panelIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.patient-header {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #edf2f3;
+}
+
+.patient-avatar {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: #eaf8f6;
+    color: #0d9488;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.patient-header h2 {
+    margin: 5px 0 3px;
+
+    color: #183b45;
+    font-size: 18px;
+
+    overflow-wrap: anywhere;
+}
+
+.patient-code {
+    color: #8ba0a5;
+    font-size: 10px;
+}
+
+
+/* Patient information */
+
+.patient-info {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+    padding: 18px 0;
+}
+
+.patient-info > div {
+    min-width: 130px;
+}
+
+.patient-info span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #8aa0a6;
+    font-size: 9px;
+}
+
+.patient-info strong {
+    color: #45616a;
+    font-size: 11px;
+}
+
+
+/* ---------------------------------------------------------
+   MEDICAL RECORD CARDS
+   --------------------------------------------------------- */
+
+.record-section {
+    margin-top: 22px;
+    padding-top: 22px;
+
+    border-top: 1px solid #edf2f3;
+}
+
+.record-heading {
+    margin-bottom: 15px;
+}
+
+.record-heading h3 {
+    margin: 5px 0 0;
+
+    color: #183b45;
+    font-size: 16px;
+}
+
+
+/* Medical history cards */
+
+.medical-record-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.medical-record-card {
+    padding: 16px;
+
+    border: 1px solid #e1ebed;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    transition: 0.2s ease;
+}
+
+.medical-record-card:hover {
+    border-color: #cbe3e0;
+    box-shadow: 0 4px 12px rgba(30, 80, 90, 0.04);
+}
+
+.record-date {
+    margin-bottom: 12px;
+
+    color: #087f76;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.record-field {
+    margin-top: 10px;
+}
+
+.record-field span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #82979c;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.record-field strong {
+    display: block;
+
+    color: #294c55;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.history-empty {
+    padding: 25px;
+
+    text-align: center;
+
+    color: #8aa0a6;
+    font-size: 12px;
+}
+
+
+/* ---------------------------------------------------------
+   ADD MEDICAL RECORD
+   --------------------------------------------------------- */
+
+.add-record-section {
+    margin-top: 25px;
+}
+
+.add-record-section .form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.add-record-section .full-width {
+    grid-column: 1 / -1;
+}
+
+.add-record-section textarea {
+    min-height: 90px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 18px;
+}
+
+/* =========================================================
+   COLLAPSIBLE MEDICAL RECORD CARDS (additions)
+   ========================================================= */
+
+.medical-record-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.record-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 14px 16px;
+    cursor: pointer;
+}
+
+.record-card-header-text {
+    min-width: 0;
+    flex: 1;
+}
+
+.record-visit-number {
+    color: #45616a;
+    font-size: 10px;
+    font-weight: 700;
+    margin: 2px 0 6px;
+}
+
+.record-preview {
+    color: #6b8085;
+    font-size: 11px;
+    line-height: 1.5;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.record-preview-label {
+    color: #087f76;
+    font-weight: 700;
+}
+
+.record-toggle-btn {
+    flex-shrink: 0;
+
+    padding: 6px 12px;
+    border: 1px solid #cbe3e0;
+    border-radius: 8px;
+
+    background: #eaf8f6;
+    color: #087f76;
+
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+.record-toggle-btn:hover {
+    background: #dff4f1;
+}
+
+/* Collapsed by default */
+.record-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid #edf2f3;
+}
+
+.medical-record-card.expanded .record-body {
+    display: block;
+    padding-top: 14px;
+}
+
+.medical-record-card.expanded .record-card-header {
+    border-bottom: 1px solid #edf2f3;
+}
+
+.medical-record-card.expanded .record-toggle-btn {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #b42318;
+}
+
+/* Long text must wrap, never overflow the card */
+.record-field strong {
+    white-space: normal;
+    word-break: break-word;
+}
+
+@media (max-width: 600px) {
+
+    .record-card-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .record-toggle-btn {
+        width: 100%;
+    }
+
+    .record-preview {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   DOCTOR DASHBOARD RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 800px) {
+
+    .doctor-search {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .doctor-search .form-group {
+        grid-column: 1 / -1;
+    }
+
+    .search-patient-btn,
+    .scan-btn {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .doctor-search {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-patient-btn,
+    .scan-btn {
+        width: 100%;
+    }
+
+    .qr-scanner-box {
+        padding: 12px;
+    }
+
+    .scanner-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .scanner-frame {
+        min-height: 240px;
+    }
+
+    #qrReader {
+        min-height: 240px;
+    }
+
+    #qrReader video {
+        height: 240px !important;
+    }
+
+    .scan-corners {
+        width: 170px;
+        height: 170px;
+    }
+
+    .patient-info {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .add-record-section .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .add-record-section .full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+    .form-actions .btn-primary {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   12. PATIENT DASHBOARD
+   ========================================================= */
+
+.patient-dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+    gap: 18px;
+}
+
+
+/* Profile */
+
+.patient-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf2f3;
+}
+
+.patient-profile-header h2 {
+    margin: 5px 0 3px;
+    color: #183b45;
+    font-size: 18px;
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 30px;
+    padding-top: 20px;
+}
+
+.profile-details span {
+    display: block;
+    margin-bottom: 5px;
+    color: #8aa0a6;
+    font-size: 9px;
+}
+
+.profile-details strong {
+    color: #45616a;
+    font-size: 11px;
+}
+
+
+/* QR Code */
+
+.qr-content {
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.qr-content img {
+    width: 160px;
+    height: 160px;
+    display: none;
+    border: 1px solid #e2ebec;
+    border-radius: 10px;
+}
+
+.qr-content p {
+    color: #8a9ca1;
+    font-size: 10px;
+}
+
+.qr-download {
+    display: none;
+    margin-top: 12px;
+    text-decoration: none;
+    min-width: 130px;
+}
+
+
+/* Contact / Edit profile */
+
+.contact-panel,
+.history-panel {
+    margin-top: 18px;
+}
+
+.contact-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    max-width: 560px;
+}
+
+.contact-form .form-group {
+    flex: 1;
+    margin: 0;
+}
+
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 560px;
+}
+
+.contact-form-address {
+    grid-column: 1 / -1;
+}
+
+.update-btn {
+    width: auto;
+    min-width: 220px;
+    margin-top: 12px;
+}
+
+
+/* =========================================================
+   13. RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* Tablets */
+
+@media (max-width: 800px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Admin + Doctor + Patient medium screens */
+
+@media (max-width: 750px) {
+
+    .admin-actions,
+    .admin-recent-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .patient-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-details {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-search {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-patient-btn,
+    .scan-btn {
+        width: 100%;
+    }
+
+    .patient-info {
+        gap: 25px;
+    }
+
+    .contact-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .update-btn {
+        width: 100%;
+    }
+}
+
+
+/* Small mobile screens */
+
+@media (max-width: 500px) {
+
+    .topbar {
+        height: auto;
+        padding: 15px;
+    }
+
+    .role-badge {
+        display: none;
+    }
+
+    .dashboard {
+        padding: 28px 15px 45px;
+    }
+
+    .page-heading h1 {
+        font-size: 25px;
+    }
+
+    .panel {
+        padding: 19px;
+    }
+
+    .profile-details {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-recent-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   FINAL PATIENT HEALTH CARD / PROFILE UI
+   ========================================================= */
+
+.profile-icon-btn {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #dce9e8;
+    border-radius: 50%;
+    background: white;
+    color: #0d9488;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+    transition: 0.2s;
+}
+
+.profile-icon-btn:hover {
+    border-color: #0d9488;
+    background: #f1fbfa;
+}
+
+.profile-overlay,
+.edit-profile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(24, 59, 69, 0.28);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: 0.2s ease;
+    z-index: 100;
+}
+
+.profile-overlay.open,
+.edit-profile-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.profile-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(420px, 94vw);
+    height: 100vh;
+    padding: 26px;
+    overflow-y: auto;
+    background: white;
+    box-shadow: -12px 0 35px rgba(20, 60, 70, 0.14);
+    transform: translateX(105%);
+    transition: 0.25s ease;
+    z-index: 110;
+}
+
+.profile-panel.open {
+    transform: translateX(0);
+}
+
+.profile-panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile-panel-header h2 {
+    margin: 5px 0 0;
+    color: #183b45;
+    font-size: 20px;
+}
+
+.profile-close {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #e0ebeb;
+    border-radius: 9px;
+    background: white;
+    color: #71888e;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.profile-close:hover {
+    border-color: #c5dedd;
+    color: #0d9488;
+}
+
+.profile-identity {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 16px;
+    border: 1px solid #e3eeee;
+    border-radius: 13px;
+    background: #f8fcfc;
+}
+
+.profile-identity strong {
+    display: block;
+    color: #294c55;
+    font-size: 14px;
+}
+
+.profile-identity span {
+    display: block;
+    margin-top: 4px;
+    color: #80959b;
+    font-size: 10px;
+}
+
+.profile-detail-list {
+    display: grid;
+    gap: 0;
+    margin-top: 18px;
+}
+
+.profile-detail-list > div {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf2f3;
+}
+
+.profile-detail-list span {
+    color: #8aa0a6;
+    font-size: 10px;
+}
+
+.profile-detail-list strong {
+    color: #3e5b63;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+.profile-panel-actions {
+    display: grid;
+    gap: 9px;
+    margin-top: 22px;
+}
+
+.logout-profile-btn {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #fecaca;
+    border-radius: 9px;
+    background: #fff7f7;
+    color: #b42318;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.logout-profile-btn:hover {
+    background: #fff0f0;
+}
+
+.edit-profile-overlay {
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    z-index: 120;
+}
+
+.edit-profile-modal {
+    width: min(650px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    border: 1px solid #dfeaea;
+    border-radius: 17px;
+    background: white;
+    box-shadow: 0 20px 60px rgba(20, 60, 70, 0.18);
+}
+
+.edit-profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.edit-address-group {
+    grid-column: 1 / -1;
+}
+
+.edit-profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 8px;
+}
+
+.health-card-panel {
+    margin-bottom: 18px;
+}
+
+.patient-health-card-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0 4px;
+}
+
+.patient-health-card-image {
+    display: block;
+    width: min(100%, 900px);
+    height: auto;
+    border: 1px solid #dce9e8;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(20, 70, 80, 0.08);
+}
+
+.health-card-error {
+    display: none;
+    color: #9b5c00;
+    font-size: 11px;
+}
+
+.health-card-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.health-card-actions .btn-primary {
+    width: auto;
+    min-width: 190px;
+}
+
+.history-cards {
+    display: grid;
+    gap: 10px;
+}
+
+.medical-record-card {
+    overflow: hidden;
+    border: 1px solid #e3eded;
+    border-radius: 12px;
+    background: #fbfdfd;
+}
+
+.medical-record-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 17px;
+    border: 0;
+    background: transparent;
+    color: #294c55;
+    text-align: left;
+    cursor: pointer;
+}
+
+.medical-record-header:hover {
+    background: #f6fbfa;
+}
+
+.medical-record-header strong {
+    display: block;
+    font-size: 12px;
+}
+
+.medical-record-header small {
+    display: block;
+    margin-top: 4px;
+    color: #8aa0a6;
+    font-size: 10px;
+}
+
+.record-chevron {
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    background: #eaf8f6;
+    color: #0d9488;
+    font-weight: 700;
+}
+
+.medical-record-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0 17px 17px;
+}
+
+.medical-record-body[hidden] {
+    display: none;
+}
+
+.record-field {
+    min-width: 0;
+    padding: 12px;
+    border-radius: 9px;
+    background: white;
+    border: 1px solid #edf2f3;
+}
+
+.record-field span {
+    display: block;
+    margin-bottom: 6px;
+    color: #8aa0a6;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.record-field p {
+    margin: 0;
+    color: #405d65;
+    font-size: 11px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.empty-history {
+    display: grid;
+    gap: 5px;
+    padding: 28px;
+    border: 1px dashed #d9e6e6;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.empty-history strong {
+    color: #405d65;
+    font-size: 12px;
+}
+
+.empty-history span {
+    color: #8aa0a6;
+    font-size: 10px;
+}
+
+.health-card-result {
+    margin-top: 20px;
+    padding: 24px;
+    border: 1px solid #dceeed;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 8px 25px rgba(30, 80, 90, 0.05);
+}
+
+.health-card-result-header h2 {
+    margin: 5px 0 4px;
+    color: #183b45;
+    font-size: 19px;
+}
+
+.health-card-result-header p {
+    margin: 0;
+    color: #84999e;
+    font-size: 11px;
+}
+
+.health-card-preview {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.health-card-preview img {
+    display: block;
+    width: min(100%, 900px);
+    height: auto;
+    border: 1px solid #dce9e8;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(20, 70, 80, 0.08);
+}
+
+.health-card-result-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.health-card-result-actions .btn-primary,
+.health-card-result-actions .btn-secondary {
+    width: auto;
+}
+
+@media (max-width: 750px) {
+    .edit-profile-grid,
+    .medical-record-body {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-address-group {
+        grid-column: auto;
+    }
+
+    .health-card-result-actions {
+        flex-direction: column;
+    }
+
+    .health-card-result-actions .btn-primary,
+    .health-card-result-actions .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   PROFILE / SECURITY MODALS
+   ========================================================= */
+
+.profile-panel-actions {
+    display: grid;
+    gap: 9px;
+    margin-top: 22px;
+}
+
+.profile-panel-actions .btn-secondary,
+.profile-panel-actions .logout-profile-btn {
+    width: 100%;
+}
+
+.edit-profile-modal {
+    width: min(720px, 94vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 55px rgba(20, 60, 70, 0.18);
+}
+
+.edit-profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.edit-address-group {
+    grid-column: 1 / -1;
+}
+
+.edit-profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.edit-profile-actions .btn-primary,
+.edit-profile-actions .btn-secondary {
+    width: auto;
+}
+
+.readonly-profile-field input {
+    background: #f5f8f8;
+    color: #819399;
+    cursor: not-allowed;
+}
+
+.password-modal {
+    width: min(500px, 94vw);
+}
+
+@media (max-width: 650px) {
+    .edit-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-address-group {
+        grid-column: auto;
+    }
+
+    .edit-profile-actions {
+        flex-direction: column;
+    }
+
+    .edit-profile-actions .btn-primary,
+    .edit-profile-actions .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   DOCTOR - STRUCTURED PRESCRIPTION
+   ========================================================= */
+
+.prescription-form {
+    margin-top: 4px;
+    padding: 18px;
+    border: 1px solid #e4eeee;
+    border-radius: 12px;
+    background: #fbfefe;
+}
+
+.prescription-form-title {
+    margin-bottom: 14px;
+}
+
+.prescription-form-title p {
+    margin: 5px 0 0;
+    color: #84999e;
+    font-size: 10px;
+}
+
+.prescription-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 14px;
+}
+
+.prescription-grid .form-group {
+    min-width: 0;
+}
+
+.prescription-grid .full-width {
+    grid-column: 1 / -1;
+}
+
+.prescription-record-field > span {
+    margin-bottom: 10px;
+}
+
+.prescription-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+.prescription-details > div {
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid #e4eeee;
+    border-radius: 9px;
+    background: #fbfefe;
+}
+
+.prescription-details small {
+    display: block;
+    margin-bottom: 4px;
+    color: #84999e;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.prescription-details strong {
+    display: block;
+    color: #234955;
+    font-size: 12px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.prescription-details .prescription-instructions {
+    grid-column: 1 / -1;
+}
+
+.record-preview-label {
+    font-weight: 700;
+    color: #087f76;
+}
+
+@media (max-width: 700px) {
+    .prescription-grid,
+    .prescription-details {
+        grid-template-columns: 1fr;
+    }
+
+    .prescription-grid .full-width,
+    .prescription-details .prescription-instructions {
+        grid-column: auto;
+    }
+}
+
+
+/* Password visibility toggles used by Doctor and Patient profile modals. */
+.dashboard-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    transform: translateY(-50%);
+    padding: 0;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #8aa1a7;
+    cursor: pointer;
+}
+
+.dashboard-password-toggle:hover {
+    background: #eaf8f6;
+    color: #0d9488;
+}
+
+.dashboard-password-toggle svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dashboard-password-toggle .eye-open { display: block; }
+.dashboard-password-toggle .eye-closed { display: none !important; }
+.dashboard-password-toggle.showing .eye-open { display: none !important; }
+.dashboard-password-toggle.showing .eye-closed { display: block !important; }

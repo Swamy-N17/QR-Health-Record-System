@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | QR Health</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+<header class="topbar">
+    <a href="/patient-dashboard.html" class="brand">
+        <div class="brand-logo">+</div>
+        <div><strong>QR Health</strong><small>Health Record System</small></div>
+    </a>
+    <div class="topbar-right">
+        <span class="role-badge">Patient</span>
+        <button type="button" class="profile-icon-btn" id="profileBtn" aria-label="Open profile">👤</button>
+    </div>
+</header>
+
+<!-- Patient profile panel -->
+<div class="profile-overlay" id="profileOverlay"></div>
+<aside class="profile-panel" id="profilePanel" aria-hidden="true">
+    <div class="profile-panel-header">
+        <div><span class="panel-label">MY PROFILE</span><h2>Patient Details</h2></div>
+        <button type="button" class="profile-close" id="closeProfileBtn" aria-label="Close profile">×</button>
+    </div>
+
+    <div class="profile-identity">
+        <div class="patient-avatar" id="profileAvatar">P</div>
+        <div><strong id="profileName">Loading...</strong><span id="profileCode">Patient Code</span></div>
+    </div>
+
+    <div class="profile-detail-list">
+        <div><span>Full Name</span><strong id="profileFullName">-</strong></div>
+        <div><span>Patient Code</span><strong id="profilePatientCode">-</strong></div>
+        <div><span>Email</span><strong id="profileEmail">-</strong></div>
+        <div><span>Phone</span><strong id="profilePhone">-</strong></div>
+        <div><span>Age</span><strong id="profileAge">-</strong></div>
+        <div><span>Date of Birth</span><strong id="profileDob">-</strong></div>
+        <div><span>Gender</span><strong id="profileGender">-</strong></div>
+        <div><span>Blood Group</span><strong id="profileBloodGroup">-</strong></div>
+        <div><span>Address</span><strong id="profileAddress">-</strong></div>
+        <div><span>Emergency Contact</span><strong id="profileEmergency">-</strong></div>
+    </div>
+
+    <div class="profile-panel-actions">
+        <button type="button" class="btn-secondary" id="editProfileBtn">✎ Edit Profile</button>
+        <button type="button" class="btn-secondary" id="changePasswordBtn">🔒 Change Password</button>
+        <button type="button" class="logout-profile-btn" id="profileLogoutBtn">Logout</button>
+    </div>
+</aside>
+
+<!-- Edit profile -->
+<div class="edit-profile-overlay" id="editProfileOverlay">
+    <section class="edit-profile-modal" role="dialog" aria-modal="true" aria-labelledby="editProfileTitle">
+        <div class="panel-heading">
+            <div><span class="panel-label">PROFILE</span><h2 id="editProfileTitle">Edit Profile</h2><p>Update your personal information.</p></div>
+            <button type="button" class="profile-close" id="cancelEditBtn">×</button>
+        </div>
+        <div class="error-box" id="contactError"></div>
+        <div class="success-box" id="contactSuccess"></div>
+        <form id="editContactForm">
+            <div class="edit-profile-grid">
+                <div class="form-group"><label for="newFullName">Full Name</label><input type="text" id="newFullName" required></div>
+                <div class="form-group"><label for="newEmail">Email</label><input type="email" id="newEmail" required></div>
+                <div class="form-group"><label for="newPhone">Phone Number</label><input type="tel" id="newPhone" pattern="[0-9]{10}" maxlength="10" required></div>
+                <div class="form-group"><label for="newAge">Age</label><input type="number" id="newAge" min="0" max="130" required></div>
+                <div class="form-group"><label for="newDob">Date of Birth <span class="field-optional-mark">(optional)</span></label><input type="date" id="newDob"></div>
+                <div class="form-group"><label for="newGender">Gender</label><select id="newGender" required><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></div>
+                <div class="form-group edit-address-group"><label for="newAddress">Address</label><textarea id="newAddress" required></textarea></div>
+                <div class="form-group"><label for="newEmergencyContact">Emergency Contact <span class="field-optional-mark">(optional)</span></label><input type="tel" id="newEmergencyContact" pattern="[0-9]{10}" maxlength="10"></div>
+                <div class="form-group readonly-profile-field"><label>Blood Group</label><input type="text" id="profileEditBloodGroup" readonly></div>
+            </div>
+            <div class="edit-profile-actions">
+                <button type="button" class="btn-secondary" id="cancelEditBtnBottom">Cancel</button>
+                <button type="submit" class="btn-primary" id="updateContactBtn">Save Changes</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<!-- Change password -->
+<div class="edit-profile-overlay" id="passwordOverlay">
+    <section class="edit-profile-modal password-modal" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+        <div class="panel-heading">
+            <div><span class="panel-label">SECURITY</span><h2 id="passwordTitle">Change Password</h2><p>Enter your current password and choose a new one.</p></div>
+            <button type="button" class="profile-close" id="cancelPasswordBtn">×</button>
+        </div>
+        <div class="error-box" id="passwordError"></div>
+        <div class="success-box" id="passwordSuccess"></div>
+        <form id="changePasswordForm">
+            <div class="form-group"><label for="currentPassword">Current Password</label><div class="password-field"><input type="password" id="currentPassword" required autocomplete="current-password"><button type="button" class="dashboard-password-toggle" data-target="currentPassword" aria-label="Show current password">
+<svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+<svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10.6 5.2A10.7 10.7 0 0 1 12 5c6 0 9.5 7 9.5 7a17.2 17.2 0 0 1-3.2 3.9M6.2 6.3C3.8 8.1 2.5 12 2.5 12s3.5 7 9.5 7c1.4 0 2.6-.3 3.7-.8"/></svg>
+</button></div></div>
+            <div class="form-group"><label for="newPassword">New Password</label><div class="password-field"><input type="password" id="newPassword" minlength="6" required autocomplete="new-password"><button type="button" class="dashboard-password-toggle" data-target="newPassword" aria-label="Show new password">
+<svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+<svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10.6 5.2A10.7 10.7 0 0 1 12 5c6 0 9.5 7 9.5 7a17.2 17.2 0 0 1-3.2 3.9M6.2 6.3C3.8 8.1 2.5 12 2.5 12s3.5 7 9.5 7c1.4 0 2.6-.3 3.7-.8"/></svg>
+</button></div></div>
+            <div class="edit-profile-actions">
+                <button type="button" class="btn-secondary" id="cancelPasswordBtnBottom">Cancel</button>
+                <button type="submit" class="btn-primary" id="savePasswordBtn">Change Password</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<main class="dashboard patient-dashboard">
+    <div class="page-heading">
+        <div><span class="eyebrow">PATIENT PORTAL</span><h1>My Health Record</h1><p>Your Health Card and complete medical history in one place.</p></div>
+    </div>
+
+    <section class="panel health-card-panel">
+        <div class="panel-heading">
+            <div><span class="panel-label">MY HEALTH CARD</span><h2>QR Health Card</h2><p>Your patient information and QR code are together on this card.</p></div>
+        </div>
+        <div class="patient-health-card-wrap">
+            <img id="healthCardImage" class="patient-health-card-image" src="" alt="Your QR Health Card">
+            <p id="healthCardError" class="health-card-error">Health Card is not available right now.</p>
+        </div>
+        <div class="health-card-actions">
+            <a id="downloadHealthCardBtn" class="btn-primary" href="/api/patient/health-card?download=true">Download Health Card</a>
+        </div>
+    </section>
+
+    <section class="panel history-panel">
+        <div class="panel-heading">
+            <div><span class="panel-label">MEDICAL RECORDS</span><h2>My Medical History</h2><p>All recorded visits are kept here. Select a visit to view its details.</p></div>
+        </div>
+        <div id="historyCards" class="history-cards"></div>
+    </section>
+</main>
+
+<script src="/js/api.js"></script>
+<script src="/js/patient-dashboard.js"></script>
+</body>
+</html>

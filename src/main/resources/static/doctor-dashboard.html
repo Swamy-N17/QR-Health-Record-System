@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Dashboard | QR Health</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/manage.css">
+
+    <!-- QR Scanner library -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<!-- ==================== TOP BAR ==================== -->
+
+<header class="topbar">
+
+    <a href="/doctor-dashboard.html" class="brand">
+
+        <div class="brand-logo">+</div>
+
+        <div>
+            <strong>QR Health</strong>
+            <small>Health Record System</small>
+        </div>
+
+    </a>
+
+
+    <div class="topbar-right">
+
+        <span class="role-badge">
+            Doctor
+        </span>
+
+        <button type="button" class="profile-icon-btn" id="doctorProfileBtn" aria-label="Open doctor profile">👤</button>
+
+    </div>
+
+</header>
+
+
+<!-- Doctor profile panel -->
+<div class="profile-overlay" id="doctorProfileOverlay"></div>
+<aside class="profile-panel" id="doctorProfilePanel" aria-hidden="true">
+    <div class="profile-panel-header">
+        <div><span class="panel-label">MY PROFILE</span><h2>Doctor Details</h2></div>
+        <button type="button" class="profile-close" id="doctorCloseProfileBtn">×</button>
+    </div>
+    <div class="profile-identity">
+        <div class="patient-avatar" id="doctorProfileAvatar">D</div>
+        <div><strong id="doctorProfileName">Loading...</strong><span id="doctorProfileCode">Doctor Code</span></div>
+    </div>
+    <div class="profile-detail-list">
+        <div><span>Full Name</span><strong id="doctorProfileFullName">-</strong></div>
+        <div><span>Doctor Code</span><strong id="doctorProfileDoctorCode">-</strong></div>
+        <div><span>Email</span><strong id="doctorProfileEmail">-</strong></div>
+        <div><span>Phone</span><strong id="doctorProfilePhone">-</strong></div>
+        <div><span>Date of Birth</span><strong id="doctorProfileDob">-</strong></div>
+        <div><span>Gender</span><strong id="doctorProfileGender">-</strong></div>
+        <div><span>Specialization</span><strong id="doctorProfileSpecialization">-</strong></div>
+        <div><span>Address</span><strong id="doctorProfileAddress">-</strong></div>
+    </div>
+    <div class="profile-panel-actions">
+        <button type="button" class="btn-secondary" id="doctorEditProfileBtn">✎ Edit Profile</button>
+        <button type="button" class="btn-secondary" id="doctorChangePasswordBtn">🔒 Change Password</button>
+        <button type="button" class="logout-profile-btn" id="doctorLogoutBtn">Logout</button>
+    </div>
+</aside>
+
+<!-- Doctor edit profile modal -->
+<div class="edit-profile-overlay" id="doctorEditOverlay">
+    <section class="edit-profile-modal" role="dialog" aria-modal="true">
+        <div class="panel-heading">
+            <div><span class="panel-label">PROFILE</span><h2>Edit Profile</h2><p>Update your personal information.</p></div>
+            <button type="button" class="profile-close" id="doctorCancelEditBtn">×</button>
+        </div>
+        <div class="error-box" id="doctorProfileError"></div>
+        <div class="success-box" id="doctorProfileSuccess"></div>
+        <form id="doctorEditForm">
+            <div class="edit-profile-grid">
+                <div class="form-group"><label for="doctorEditName">Full Name</label><input type="text" id="doctorEditName" required></div>
+                <div class="form-group"><label for="doctorEditEmail">Email</label><input type="email" id="doctorEditEmail" required></div>
+                <div class="form-group"><label for="doctorEditPhone">Phone Number</label><input type="tel" id="doctorEditPhone" maxlength="10" pattern="[0-9]{10}" required></div>
+                <div class="form-group"><label for="doctorEditDob">Date of Birth</label><input type="date" id="doctorEditDob"></div>
+                <div class="form-group"><label for="doctorEditGender">Gender</label><select id="doctorEditGender" required><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></div>
+                <div class="form-group readonly-profile-field"><label>Specialization</label><input type="text" id="doctorEditSpecialization" readonly></div>
+                <div class="form-group edit-address-group"><label for="doctorEditAddress">Address</label><textarea id="doctorEditAddress" required></textarea></div>
+            </div>
+            <div class="edit-profile-actions">
+                <button type="button" class="btn-secondary" id="doctorCancelEditBottom">Cancel</button>
+                <button type="submit" class="btn-primary" id="doctorSaveProfileBtn">Save Changes</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<!-- Doctor change password modal -->
+<div class="edit-profile-overlay" id="doctorPasswordOverlay">
+    <section class="edit-profile-modal password-modal" role="dialog" aria-modal="true">
+        <div class="panel-heading">
+            <div><span class="panel-label">SECURITY</span><h2>Change Password</h2><p>Enter your current password and choose a new one.</p></div>
+            <button type="button" class="profile-close" id="doctorCancelPasswordBtn">×</button>
+        </div>
+        <div class="error-box" id="doctorPasswordError"></div>
+        <div class="success-box" id="doctorPasswordSuccess"></div>
+        <form id="doctorPasswordForm">
+            <div class="form-group"><label for="doctorCurrentPassword">Current Password</label><div class="password-field"><input type="password" id="doctorCurrentPassword" required autocomplete="current-password"><button type="button" class="dashboard-password-toggle" data-target="doctorCurrentPassword" aria-label="Show current password">
+<svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+<svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10.6 5.2A10.7 10.7 0 0 1 12 5c6 0 9.5 7 9.5 7a17.2 17.2 0 0 1-3.2 3.9M6.2 6.3C3.8 8.1 2.5 12 2.5 12s3.5 7 9.5 7c1.4 0 2.6-.3 3.7-.8"/></svg>
+</button></div></div>
+            <div class="form-group"><label for="doctorNewPassword">New Password</label><div class="password-field"><input type="password" id="doctorNewPassword" minlength="6" required autocomplete="new-password"><button type="button" class="dashboard-password-toggle" data-target="doctorNewPassword" aria-label="Show new password">
+<svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+<svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10.6 5.2A10.7 10.7 0 0 1 12 5c6 0 9.5 7 9.5 7a17.2 17.2 0 0 1-3.2 3.9M6.2 6.3C3.8 8.1 2.5 12 2.5 12s3.5 7 9.5 7c1.4 0 2.6-.3 3.7-.8"/></svg>
+</button></div></div>
+            <div class="edit-profile-actions">
+                <button type="button" class="btn-secondary" id="doctorCancelPasswordBottom">Cancel</button>
+                <button type="submit" class="btn-primary" id="doctorSavePasswordBtn">Change Password</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+
+<main class="dashboard">
+
+
+    <!-- ==================== PAGE HEADING ==================== -->
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                DOCTOR PORTAL
+            </span>
+
+            <h1>
+                Doctor Dashboard
+            </h1>
+
+            <p>
+                Find patients and manage their medical records.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================== TODAY'S SUMMARY ==================== -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon doctor-icon">
+                +
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    Today's Patients
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="todaysPatients"
+                >
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== FIND PATIENT ==================== -->
+
+    <!-- Find Patient -->
+
+<section class="panel patient-search-panel">
+
+    <div class="panel-heading">
+        <div>
+            <span class="panel-label">PATIENT ACCESS</span>
+            <h2>Find Patient</h2>
+        </div>
+
+        <div class="panel-icon">⌕</div>
+    </div>
+
+    <p class="search-intro">
+        Search using the patient's code or scan their QR code.
+    </p>
+
+    <div class="doctor-search">
+
+        <div class="form-group">
+            <label for="manualCode">Patient Code</label>
+
+            <input
+                type="text"
+                id="manualCode"
+                placeholder="e.g. PAT0001"
+            >
+        </div>
+
+        <button
+            type="button"
+            class="btn-primary search-patient-btn"
+            id="searchByCodeBtn"
+        >
+            Search Patient
+        </button>
+
+        <button
+            type="button"
+            class="scan-btn"
+            id="startScanBtn"
+        >
+            Scan QR Code
+        </button>
+
+    </div>
+
+
+    <!-- QR Scanner -->
+
+    <div class="qr-scanner-box" id="qrScannerBox">
+
+        <div class="scanner-header">
+
+            <div>
+                <strong>Scan Patient QR Code</strong>
+
+                <span>
+                    Position the QR code inside the frame.
+                </span>
+            </div>
+
+            <span class="scanner-status">
+                Camera Active
+            </span>
+
+        </div>
+
+
+        <div class="scanner-frame">
+
+            <div id="qrReader"></div>
+
+            <div class="scan-corners"></div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="error-box"
+        id="findPatientError"
+    ></div>
+
+</section>
+
+
+    <!-- ==================== PATIENT DETAILS ==================== -->
+
+    <section
+        class="panel patient-details-panel"
+        id="patientDetailsSection"
+        style="display:none;"
+    >
+
+
+        <!-- Patient header -->
+
+        <div class="patient-header">
+
+            <div class="patient-avatar">
+                P
+            </div>
+
+            <div>
+
+                <span class="panel-label">
+                    PATIENT RECORD
+                </span>
+
+                <h2 id="pName"></h2>
+
+                <span
+                    class="patient-code"
+                    id="pCode"
+                ></span>
+
+            </div>
+
+        </div>
+
+
+        <input
+            type="hidden"
+            id="pId"
+        >
+
+
+        <!-- Patient information -->
+
+        <div class="patient-info">
+
+            <div>
+                <span>Age</span>
+                <strong id="pAge">-</strong>
+            </div>
+
+            <div>
+                <span>Date of Birth</span>
+                <strong id="pDob">-</strong>
+            </div>
+
+            <div>
+                <span>Gender</span>
+                <strong id="pGender">-</strong>
+            </div>
+
+            <div>
+                <span>Blood Group</span>
+                <strong id="pBloodGroup">-</strong>
+            </div>
+
+            <div>
+                <span>Phone Number</span>
+                <strong id="pPhone">-</strong>
+            </div>
+
+            <div>
+                <span>Address / Place</span>
+                <strong id="pAddress">-</strong>
+            </div>
+
+            <div>
+                <span>Emergency Contact</span>
+                <strong id="pEmergencyContact">-</strong>
+            </div>
+
+        </div>
+
+
+        <!-- ==================== MEDICAL HISTORY ==================== -->
+
+        <div class="record-section">
+
+            <div class="record-heading">
+
+                <div>
+
+                    <span class="panel-label">
+                        MEDICAL RECORDS
+                    </span>
+
+                    <h3>
+                        Medical History
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                Medical records will be inserted here by JavaScript.
+                This is a card/list container instead of a table.
+            -->
+
+            <div
+                id="historyTableBody"
+                class="medical-record-list"
+            ></div>
+
+
+            <!-- Empty state -->
+
+            <div
+                id="historyEmpty"
+                class="history-empty"
+                style="display:none;"
+            >
+                No medical records found.
+            </div>
+
+        </div>
+
+
+        <!-- ==================== ADD MEDICAL RECORD ==================== -->
+
+        <div class="record-section add-record-section">
+
+            <div class="record-heading">
+
+                <div>
+
+                    <span class="panel-label">
+                        NEW ENTRY
+                    </span>
+
+                    <h3>
+                        Add Medical Record
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- Error -->
+
+            <div
+                class="error-box"
+                id="addRecordError"
+            ></div>
+
+
+            <!-- Success -->
+
+            <div
+                class="success-box"
+                id="addRecordSuccess"
+            ></div>
+
+
+            <form id="addRecordForm">
+
+                <div class="form-grid">
+
+
+                    <!-- Diagnosis -->
+
+                    <div class="form-group">
+
+                        <label for="diagnosis">
+                            Diagnosis
+                        </label>
+
+                        <input
+                            type="text"
+                            id="diagnosis"
+                            placeholder="Enter diagnosis"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Prescription -->
+
+                    <div class="prescription-form full-width">
+
+                        <div class="prescription-form-title">
+                            <span class="panel-label">PRESCRIPTION</span>
+                            <p>Enter the medicine, dosage, frequency and duration clearly.</p>
+                        </div>
+
+                        <div class="prescription-grid">
+
+                            <div class="form-group">
+                                <label for="medicineName">Medicine Name</label>
+                                <input type="text" id="medicineName" placeholder="e.g. Dolo 65" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dosage">Dosage</label>
+                                <input type="text" id="dosage" placeholder="e.g. 1 tablet" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="frequency">Frequency</label>
+                                <select id="frequency" required>
+                                    <option value="" selected disabled>Select frequency</option>
+                                    <option>Once daily</option>
+                                    <option>Twice daily</option>
+                                    <option>Three times daily</option>
+                                    <option>Every 4 hours</option>
+                                    <option>Every 6 hours</option>
+                                    <option>Every 8 hours</option>
+                                    <option>As needed</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="duration">Duration</label>
+                                <input type="text" id="duration" placeholder="e.g. 3 days" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="instructions">When / How to Take</label>
+                                <input type="text" id="instructions" placeholder="e.g. After food, morning and evening">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Notes -->
+
+                    <div class="form-group full-width">
+
+                        <label for="visitNotes">
+                            Visit Notes
+                        </label>
+
+                        <textarea
+                            id="visitNotes"
+                            placeholder="Add any additional notes..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Add Medical Record
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="/js/api.js"></script>
+<script src="/js/doctor-dashboard.js"></script>
+</body>
+</html>

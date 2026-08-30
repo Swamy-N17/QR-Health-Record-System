@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register Doctor | QR Health</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="/admin-dashboard.html" class="brand">
+        <div class="brand-logo">+</div>
+
+        <div>
+            <strong>QR Health</strong>
+            <small>Health Record System</small>
+        </div>
+    </a>
+
+    <div class="topbar-right">
+        <span class="role-badge">Admin</span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+</header>
+
+
+<main class="dashboard">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">ADMINISTRATION</span>
+            <h1>Register Doctor</h1>
+            <p>Add a new doctor to the healthcare system.</p>
+        </div>
+
+        <a href="/admin-dashboard.html" class="back-link">
+            ← Dashboard
+        </a>
+    </div>
+
+
+    <section class="form-card">
+
+        <div class="form-header">
+            <div class="form-icon">+</div>
+
+            <div>
+                <h2>Doctor Information</h2>
+                <p>Enter the doctor's details below.</p>
+            </div>
+        </div>
+
+
+        <div class="error-box" id="doctorError"></div>
+        <div class="success-box" id="doctorSuccess"></div>
+
+
+        <form id="registerDoctorForm" novalidate>
+
+            <div class="form-section-title">
+                Personal Information
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="doctorFullName">
+                        Full Name <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="doctorFullName"
+                        placeholder="e.g. Dr. Ramesh Kumar"
+                        required
+                    >
+
+                    <div class="field-error" id="err-doctorFullName"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="doctorEmail">
+                        Email <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="doctorEmail"
+                        placeholder="doctor@clinic.com"
+                        required
+                    >
+
+                    <div class="field-error" id="err-doctorEmail"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="doctorPhone">
+                        Phone Number <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="doctorPhone"
+                        placeholder="10-digit number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+
+                    <div class="field-error" id="err-doctorPhone"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="doctorDob">
+                        Date of Birth <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="doctorDob"
+                        required
+                    >
+
+                    <div class="field-error" id="err-doctorDob"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="doctorGender">
+                        Gender <span class="required-mark">*</span>
+                    </label>
+
+                    <select id="doctorGender" required>
+                        <option value="" disabled selected>
+                            Select gender
+                        </option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <div class="field-error" id="err-doctorGender"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="doctorSpecialization">
+                        Specialization <span class="required-mark">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="doctorSpecialization"
+                        placeholder="e.g. Cardiology"
+                        required
+                    >
+
+                    <div
+                        class="field-error"
+                        id="err-doctorSpecialization"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <div class="form-section-title">
+                Account & Address
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="doctorPassword">
+                        Password <span class="required-mark">*</span>
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="doctorPassword"
+                            placeholder="At least 6 characters"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle-btn"
+                            id="toggleDoctorPassword"
+                            aria-label="Show password"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                    <div class="field-error" id="err-doctorPassword"></div>
+                </div>
+
+
+                <div class="form-group full-width">
+                    <label for="doctorAddress">
+                        Address <span class="required-mark">*</span>
+                    </label>
+
+                    <textarea
+                        id="doctorAddress"
+                        placeholder="Street, City, State, PIN"
+                        required
+                    ></textarea>
+
+                    <div class="field-error" id="err-doctorAddress"></div>
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <a
+                    href="/admin-dashboard.html"
+                    class="btn-secondary"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="submitBtn"
+                >
+                    Register Doctor
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/register-doctor.js"></script>
+
+</body>
+</html>
