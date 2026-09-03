@@ -49,64 +49,121 @@ public class PasswordResetTokenService {
         String generatedToken = UUID.randomUUID().toString();
         LocalDateTime expiry = LocalDateTime.now().plusMinutes(EXPIRY_MINUTES);
 
-        PasswordResetToken resetToken = new PasswordResetToken(generatedToken, expiry);
+        PasswordResetToken resetToken =
+                new PasswordResetToken(generatedToken, expiry);
 
-        // Check each role in turn — only one of these will ever match
-        Optional<SuperAdmin> superAdmin = superAdminRepository.findByEmail(email);
-        Optional<Admin> admin = adminRepository.findByEmail(email);
-        Optional<Doctor> doctor = doctorRepository.findByEmail(email);
-        Optional<Patient> patient = patientRepository.findByEmail(email);
+        Optional<SuperAdmin> superAdmin =
+                superAdminRepository.findByEmail(email);
+
+        Optional<Admin> admin =
+                adminRepository.findByEmail(email);
+
+        Optional<Doctor> doctor =
+                doctorRepository.findByEmail(email);
+
+        Optional<Patient> patient =
+                patientRepository.findByEmail(email);
 
         if (superAdmin.isPresent()) {
             resetToken.setSuperAdmin(superAdmin.get());
+
         } else if (admin.isPresent()) {
             resetToken.setAdmin(admin.get());
+
         } else if (doctor.isPresent()) {
             resetToken.setDoctor(doctor.get());
+
         } else if (patient.isPresent()) {
             resetToken.setPatient(patient.get());
+
         } else {
-            throw new RuntimeException("No account found with this email: " + email);
+            throw new RuntimeException(
+                    "No account found with this email: " + email
+            );
         }
 
         tokenRepository.save(resetToken);
+
         return generatedToken;
     }
 
     public void resetPassword(String token, String newRawPassword) {
 
-        PasswordResetToken resetToken = tokenRepository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("Invalid or expired reset token"));
+        PasswordResetToken resetToken =
+                tokenRepository.findByToken(token)
+                        .orElseThrow(() ->
+                                new RuntimeException(
+                                        "Invalid or expired reset token"
+                                ));
 
-        if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+        if (resetToken.getExpiryDate()
+                .isBefore(LocalDateTime.now())) {
+
             tokenRepository.delete(resetToken);
-            throw new RuntimeException("This reset link has expired. Please request a new one.");
+
+            throw new RuntimeException(
+                    "This reset link has expired. Please request a new one."
+            );
         }
 
-        String encodedPassword = passwordEncoder.encode(newRawPassword);
+        String encodedPassword =
+                passwordEncoder.encode(newRawPassword);
 
         if (resetToken.getSuperAdmin() != null) {
+
             SuperAdmin sa = resetToken.getSuperAdmin();
+
             sa.setPassword(encodedPassword);
+
             superAdminRepository.save(sa);
 
+            System.out.println(
+                    "PASSWORD RESET: SuperAdmin password updated for ID "
+                            + sa.getId()
+            );
+
         } else if (resetToken.getAdmin() != null) {
+
             Admin a = resetToken.getAdmin();
+
             a.setPassword(encodedPassword);
+
             adminRepository.save(a);
 
+            System.out.println(
+                    "PASSWORD RESET: Admin password updated for ID "
+                            + a.getId()
+            );
+
         } else if (resetToken.getDoctor() != null) {
+
             Doctor d = resetToken.getDoctor();
+
             d.setPassword(encodedPassword);
+
             doctorRepository.save(d);
 
+            System.out.println(
+                    "PASSWORD RESET: Doctor password updated for ID "
+                            + d.getId()
+                            + ", email " + d.getEmail()
+            );
+
         } else if (resetToken.getPatient() != null) {
+
             Patient p = resetToken.getPatient();
+
             p.setPassword(encodedPassword);
+
             patientRepository.save(p);
+
+            System.out.println(
+                    "PASSWORD RESET: Patient password updated for ID "
+                            + p.getId()
+                            + ", email " + p.getEmail()
+            );
         }
 
-        // Token is single-use — delete it now so it can never be reused
         tokenRepository.delete(resetToken);
     }
 }
